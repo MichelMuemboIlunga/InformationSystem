@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author MICHEL MUEMBO ILUNGA
  */
 public class DbConnection {
-    public static Connection DerbyConnection() throws SQLException{
+    public static Connection DbConnection() throws SQLException{
         
         String url = "jdbc:derby://localhost:1527/InfoSystem";
         String user = "root";

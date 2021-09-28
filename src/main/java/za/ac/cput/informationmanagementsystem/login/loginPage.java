@@ -163,7 +163,7 @@ public class loginPage extends JFrame implements ActionListener {
         if (e.getSource() == btnLogin) {
             // create connection
             try {
-                try (Connection conn = DbConnection.DerbyConnection()) {
+                try (Connection conn = DbConnection.DbConnection()) {
                     String username = usernameField.getText();
                     String password = userPasswordField.getText();
                     String userRole = (String) myComboBox.getSelectedItem();
@@ -178,22 +178,35 @@ public class loginPage extends JFrame implements ActionListener {
                         if("Admin".equals(userRole)){
                             // open admin dashboard if user is an admin
                           Dashboard admin_page = new Dashboard();
-                          admin_page.show();
+                            admin_page.setTitle("INFROMATION MANAGEMENT SYSTEM");
+                            admin_page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+                            admin_page.setSize(700, 700);
+                            admin_page.setResizable(false);
+                            admin_page.getContentPane().setBackground(new Color(19, 22, 54));
+
+                            ImageIcon logo = new ImageIcon("src/logo.png");
+                            admin_page.setIconImage(logo.getImage());
+                            
+                            admin_page.show();
                         }else if("Agent".equals(userRole)){
                             // open agent dashboard if user is an agent
                             AgentDashboard agent_dashboard = new AgentDashboard();
                             agent_dashboard.show();
                         }
                         
-                        // validations
                         
-                        // set textfield red border if empty error (if login failed)
-                        }else if (usernameField.getText().trim().isEmpty()) {
+                   }
+                    // validations
+                        
+                    // set textfield red border if empty error (if login failed)
+                    else if (usernameField.getText().trim().isEmpty()) {
 
                              Border border = BorderFactory.createLineBorder(Color.RED, 2);
                              usernameField.setBorder(border);
                              messageLabel.setText("username Field Required * ");
                              messageLabel.setForeground(Color.red);
+                             
+                             
                              usernameField.addMouseListener(new MouseAdapter(){
                              
                              // if user click again to the field it should remove the border and label message
@@ -206,11 +219,14 @@ public class loginPage extends JFrame implements ActionListener {
                              });
                       
                              usernameField.setBorder(border);
-                        }else if(userPasswordField.getText().trim().isEmpty()){
+                    }
+                    else if(userPasswordField.getText().trim().isEmpty()){
                              Border border = BorderFactory.createLineBorder(Color.RED, 2);
                              userPasswordField.setBorder(border);
                              messageLabel.setText("password Field Required * ");
                              messageLabel.setForeground(Color.red);
+                             
+                             
                              userPasswordField.addMouseListener(new MouseAdapter(){
                              
                              // if user click again to the field it should remove the border and label message
@@ -247,6 +263,7 @@ public class loginPage extends JFrame implements ActionListener {
         // extension for login page
 
         loginPage login = new loginPage();
+       
 
         // create the interface
 
@@ -259,7 +276,8 @@ public class loginPage extends JFrame implements ActionListener {
         ImageIcon logo = new ImageIcon("src/logo.png");
         login.setIconImage(logo.getImage());
         login.setVisible(true);
-
+        
+      
 
     }
   
