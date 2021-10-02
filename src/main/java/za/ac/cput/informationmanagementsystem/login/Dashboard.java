@@ -77,12 +77,12 @@ public class Dashboard extends JFrame implements ActionListener{
         
         
         
-        addNewHouse.setBounds(300, 300, 200, 35);
+        addNewHouse.setBounds(240, 300, 200, 35);
         addNewHouse.setFocusable(false);
         addNewHouse.setCursor(new Cursor(Cursor.HAND_CURSOR));
         addNewHouse.addActionListener(this);
         
-        addNewAgent.setBounds(600, 300, 200, 35);
+        addNewAgent.setBounds(240, 350, 200, 35);
         addNewAgent.setFocusable(false);
         addNewAgent.setCursor(new Cursor(Cursor.HAND_CURSOR));
         addNewAgent.addActionListener(this);
@@ -108,7 +108,16 @@ public class Dashboard extends JFrame implements ActionListener{
           if (e.getSource() == addNewHouse){
               
              AdminHouseAdd admin_house = new AdminHouseAdd();
-             admin_house.show();
+             admin_house.setTitle("INFROMATION MANAGEMENT SYSTEM");
+             admin_house.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+             admin_house.setSize(700, 700);
+             admin_house.setResizable(true);
+             admin_house.getContentPane().setBackground(new Color(19, 22, 54));
+
+              ImageIcon logo = new ImageIcon("src/logo.png");
+              admin_house.setIconImage(logo.getImage());
+                            
+              admin_house.show();               
           }
           if(e.getSource() == addNewAgent){
               AdminAgentAdd create_venue = new AdminAgentAdd();
